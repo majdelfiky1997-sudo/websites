@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBSITES</title>
+
+    <style>
+        :root {
+            --accent: yellow;
+            --heading-color: lightblue;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: darkgreen;
+            color: white;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: white;
+            font-size: clamp(42px, 7vw, 75px);
+            text-align: center;
+            border: 3px solid var(--accent);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px;
+            text-shadow: 0 0 15px var(--accent);
+            box-shadow: 0 0 20px var(--accent);
+            animation: pulse 2s infinite;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .navbar {
+            background-color: transparent;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar button,
+        .popup button {
+            background-color: black;
+            color: var(--accent);
+            padding: 12px 25px;
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 4px;
+        }
+
+        .navbar button:hover,
+        .popup button:hover {
+            background-color: var(--accent);
+            color: black;
+            box-shadow: 0 0 15px var(--accent);
+            transform: scale(1.06);
+        }
+
+        .intro {
+            color: white;
+            font-size: clamp(22px, 3vw, 35px);
+            line-height: 1.5;
+            text-align: center;
+            margin: 25px 15px;
+        }
+
+        .content-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+            gap: 40px;
+            align-items: start;
+            padding: 10px 40px 50px;
+        }
+
+        .website-list {
+            min-width: 0;
+        }
+
+        .site-title {
+            font-size: clamp(32px, 4vw, 50px);
+            color: var(--heading-color);
+            text-shadow: 0 0 20px yellowgreen;
+            opacity: 1;
+            margin: 28px 0 5px;
+        }
+
+        a {
+            color: var(--accent);
+            font-size: 25px;
+            overflow-wrap: anywhere;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: red;
+            font-size: 28px;
+            text-shadow: 0 0 10px var(--accent), 0 0 25px var(--accent);
+            filter: brightness(1.5);
+        }
+
+        a:active {
+            color: lime;
+        }
+
+        .side-text {
+            position: sticky;
+            top: 100px;
+            color: white;
+            font-size: 22px;
+            width: auto;
+            line-height: 1.6;
+            margin: 20px 0;
+            padding: 25px;
+            background-color: rgba(0, 0, 0, 0.35);
+            border: 2px solid var(--accent);
+            border-radius: 15px;
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        .side-text strong {
+            display: block;
+            color: var(--accent);
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: black;
+            color: var(--accent);
+            border: 3px solid var(--accent);
+            border-radius: 15px;
+            padding: 30px;
+            width: 440px;
+            max-width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 0 25px var(--accent);
+            z-index: 1000;
+        }
+
+        .popup h2 {
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .popup p {
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .popup textarea {
+            width: 100%;
+            min-height: 110px;
+            display: block;
+            margin: 15px auto;
+            resize: vertical;
+            padding: 10px;
+            font: inherit;
+        }
+
+        ::selection {
+            background-color: blue;
+            color: white;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.01); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 800px) {
+            .content-layout {
+                grid-template-columns: 1fr;
+                padding: 10px 22px 40px;
+            }
+
+            .side-text {
+                position: static;
+                grid-row: 1;
+            }
+
+            .navbar button {
+                padding: 10px 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>WEBSITES</h1>
+
+    <div class="navbar">
+        <button onclick="openPopup('settingsPanel')">SETTINGS</button>
+        <button onclick="openPopup('aboutPanel')">ABOUT</button>
+        <button onclick="openPopup('feedbackPanel')">FEEDBACK</button>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="settingsPanel" class="popup">
+        <h2>SETTINGS</h2>
+        <p>Customize Your Website Here!</p>
+
+        <button onclick="changeTheme('darkgreen', 'yellow')">GREEN &amp; YELLOW</button>
+        <button onclick="changeTheme('darkblue', 'white')">BLUE &amp; WHITE</button>
+        <button onclick="changeTheme('purple', 'pink')">PURPLE &amp; PINK</button>
+        <button onclick="changeTheme('black', 'red')">BLACK &amp; RED</button>
+    </div>
+
+    <!-- ABOUT -->
+    <div id="aboutPanel" class="popup">
+        <h2>ABOUT</h2>
+        <p>
+            This is my first website. Thanks to ChatGPT,
+            he helped me make this website. I'm so happy
+            that I made this. Please enjoy!
+        </p>
+    </div>
+
+    <!-- FEEDBACK -->
+    <div id="feedbackPanel" class="popup">
+        <h2>FEEDBACK</h2>
+        <p>Tell me what you think about this website!</p>
+        <textarea id="feedbackInput" placeholder="Write your feedback here..."></textarea>
+        <button onclick="submitFeedback()">SUBMIT</button>
+    </div>
+
+    <p class="intro">Come here and go to websites in a cool place!</p>
+
+    <div class="content-layout">
+        <main class="website-list">
+            <p class="site-title">YOUTUBE</p>
+            <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer">Visit YouTube</a>
+
+            <p class="site-title">GOOGLE</p>
+            <a href="https://google.com/" target="_blank" rel="noopener noreferrer">Visit Google</a>
+
+            <p class="site-title">SPOTIFY</p>
+            <a href="https://spotify.com/" target="_blank" rel="noopener noreferrer">Visit Spotify</a>
+
+            <p class="site-title">DISCORD</p>
+            <a href="https://discord.com/" target="_blank" rel="noopener noreferrer">Visit Discord</a>
+
+            <p class="site-title">CHATGPT</p>
+            <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Visit ChatGPT</a>
+
+            <p class="site-title">FACEBOOK</p>
+            <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">Visit Facebook</a>
+
+            <p class="site-title">INSTAGRAM</p>
+            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Visit Instagram</a>
+
+            <p class="site-title">X</p>
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer">Visit X</a>
+
+            <p class="site-title">TIKTOK</p>
+            <a href="https://tiktok.com/" target="_blank" rel="noopener noreferrer">Visit TikTok</a>
+
+            <p class="site-title">REDDIT</p>
+            <a href="https://reddit.com/" target="_blank" rel="noopener noreferrer">Visit Reddit</a>
+
+            <p class="site-title">ROBLOX</p>
+            <a href="https://roblox.com/" target="_blank" rel="noopener noreferrer">Visit Roblox</a>
+
+            <p class="site-title">MINECRAFT</p>
+            <a href="https://www.minecraft.net/" target="_blank" rel="noopener noreferrer">Visit Minecraft</a>
+
+            <p class="site-title">STEAM</p>
+            <a href="https://store.steampowered.com/" target="_blank" rel="noopener noreferrer">Visit Steam</a>
+
+            <p class="site-title">CANVA</p>
+            <a href="https://canva.com/" target="_blank" rel="noopener noreferrer">Visit Canva</a>
+
+            <p class="site-title">PHOTOPEA</p>
+            <a href="https://photopea.com/" target="_blank" rel="noopener noreferrer">Visit Photopea</a>
+
+            <p class="site-title">CRAZYGAMES</p>
+            <a href="https://crazygames.com/" target="_blank" rel="noopener noreferrer">Visit CrazyGames</a>
+
+            <p class="site-title">WIKIPEDIA</p>
+            <a href="https://wikipedia.org/" target="_blank" rel="noopener noreferrer">Visit Wikipedia</a>
+
+            <p class="site-title">SCRATCH</p>
+            <a href="https://scratch.mit.edu/" target="_blank" rel="noopener noreferrer">Visit Scratch</a>
+
+            <p class="site-title">NEAL.FUN</p>
+            <a href="https://neal.fun/" target="_blank" rel="noopener noreferrer">Visit Neal.fun</a>
+
+            <p class="site-title">CHESS.COM</p>
+            <a href="https://chess.com/" target="_blank" rel="noopener noreferrer">Visit Chess.com</a>
+
+            <p class="site-title">GOOGLE TRANSLATE</p>
+            <a href="https://translate.google.com/" target="_blank" rel="noopener noreferrer">Visit Google Translate</a>
+
+            <p class="site-title">SPEEDTEST</p>
+            <a href="https://speedtest.net/" target="_blank" rel="noopener noreferrer">Visit Speedtest</a>
+
+            <p class="site-title">THE USELESS WEB</p>
+            <a href="https://theuselessweb.com/" target="_blank" rel="noopener noreferrer">Visit The Useless Web</a>
+
+            <!-- 10 MORE WEBSITES -->
+            <p class="site-title">W3SCHOOLS</p>
+            <a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer">Visit W3Schools</a>
+
+            <p class="site-title">MDN WEB DOCS</p>
+            <a href="https://developer.mozilla.org/" target="_blank" rel="noopener noreferrer">Visit MDN Web Docs</a>
+
+            <p class="site-title">KHAN ACADEMY</p>
+            <a href="https://www.khanacademy.org/" target="_blank" rel="noopener noreferrer">Visit Khan Academy</a>
+
+            <p class="site-title">NASA</p>
+            <a href="https://www.nasa.gov/" target="_blank" rel="noopener noreferrer">Visit NASA</a>
+
+            <p class="site-title">NATIONAL GEOGRAPHIC KIDS</p>
+            <a href="https://kids.nationalgeographic.com/" target="_blank" rel="noopener noreferrer">Visit National Geographic Kids</a>
+
+            <p class="site-title">COOLMATH GAMES</p>
+            <a href="https://www.coolmathgames.com/" target="_blank" rel="noopener noreferrer">Visit Coolmath Games</a>
+
+            <p class="site-title">TYPINGCLUB</p>
+            <a href="https://www.typingclub.com/" target="_blank" rel="noopener noreferrer">Visit TypingClub</a>
+
+            <p class="site-title">TINKERCAD</p>
+            <a href="https://www.tinkercad.com/" target="_blank" rel="noopener noreferrer">Visit Tinkercad</a>
+
+            <p class="site-title">CHROME MUSIC LAB</p>
+            <a href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener noreferrer">Visit Chrome Music Lab</a>
+
+            <p class="site-title">GDEVELOP</p>
+            <a href="https://gdevelop.io/" target="_blank" rel="noopener noreferrer">Visit GDevelop</a>
+        </main>
+
+        <aside class="side-text">
+            <strong>READ ME!</strong>
+            This is a website to make your PC look good.
+            For example, if you're AFK and want your PC to look cool
+            while you're away, you can leave this page open.
+            Here there are lots and lots of websites, and you choose
+            which one you want to visit. You can even put this page
+            in fullscreen!
+        </aside>
+    </div>
+
+    <!-- EMAILJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        // OPEN AND CLOSE POPUPS
+        function openPopup(id) {
+            const panels = document.querySelectorAll(".popup");
+            const selectedPanel = document.getElementById(id);
+
+            if (!selectedPanel) return;
+
+            const isAlreadyOpen = selectedPanel.style.display === "block";
+
+            panels.forEach(function(panel) {
+                panel.style.display = "none";
+            });
+
+            if (!isAlreadyOpen) {
+                selectedPanel.style.display = "block";
+            }
+        }
+
+        // CLOSE POPUPS WHEN CLICKING OUTSIDE OR PRESSING ESCAPE
+        document.addEventListener("click", function(event) {
+            const panels = document.querySelectorAll(".popup");
+            const navbar = document.querySelector(".navbar");
+
+            if (navbar.contains(event.target)) return;
+
+            panels.forEach(function(panel) {
+                if (!panel.contains(event.target)) {
+                    panel.style.display = "none";
+                }
+            });
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                document.querySelectorAll(".popup").forEach(function(panel) {
+                    panel.style.display = "none";
+                });
+            }
+        });
+
+        // CHANGE THEME
+        function changeTheme(background, accent) {
+            document.body.style.backgroundColor = background;
+            document.documentElement.style.setProperty("--accent", accent);
+        }
+
+        // EMAILJS
+        emailjs.init({
+            publicKey: "XsHWIvB4KifeI64UE"
+        });
+
+        // SUBMIT FEEDBACK
+        function submitFeedback() {
+            const feedbackInput = document.getElementById("feedbackInput");
+            const feedback = feedbackInput.value.trim();
+
+            if (feedback === "") {
+                alert("Please write some feedback first!");
+                return;
+            }
+
+            emailjs.send("service_uw1npxn", "template_fkm2deb", {
+                feedback: feedback
+            })
+            .then(function() {
+                alert("Feedback sent successfully!");
+                feedbackInput.value = "";
+            })
+            .catch(function(error) {
+                alert("Failed to send feedback! Please try again.");
+                console.log(error);
+            });
+        }
+    </script>
+
+</body>
+</html>
